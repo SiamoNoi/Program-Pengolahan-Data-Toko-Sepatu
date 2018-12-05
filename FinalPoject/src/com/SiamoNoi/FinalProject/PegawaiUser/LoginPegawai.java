@@ -5,6 +5,8 @@
  */
 package com.SiamoNoi.FinalProject.PegawaiUser;
 
+import com.SiamoNoi.FinalProject.Main;
+
 /**
  *
  * @author Arifanny Ramadhan Sukma | arifannyrs@gmail.com
@@ -49,6 +51,11 @@ public class LoginPegawai extends javax.swing.JFrame {
         PgwPasswordField2.setText("jPasswordField2");
 
         CancelButton1.setText("Cancel");
+        CancelButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelButton1ActionPerformed(evt);
+            }
+        });
 
         LoginButton2.setText("Login");
 
@@ -96,6 +103,13 @@ public class LoginPegawai extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void CancelButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButton1ActionPerformed
+        // TODO add your handling code here:
+        Main home = new Main();
+        home.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_CancelButton1ActionPerformed
 
     /**
      * @param args the command line arguments

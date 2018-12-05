@@ -9,6 +9,7 @@ package com.SiamoNoi.FinalProject;
  *
  * @author AhmadSyifaur<ahmadsyifaur11@gmail.com>
  */
+import com.SiamoNoi.FinalProject.PegawaiUser.LoginPegawai;
 public class Main extends javax.swing.JFrame {
 
     /**
@@ -92,6 +93,9 @@ public class Main extends javax.swing.JFrame {
 
     private void PegawaiButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PegawaiButtonActionPerformed
         // TODO add your handling code here:
+        LoginPegawai pgwLogin = new LoginPegawai();
+        pgwLogin.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_PegawaiButtonActionPerformed
 
     /**
