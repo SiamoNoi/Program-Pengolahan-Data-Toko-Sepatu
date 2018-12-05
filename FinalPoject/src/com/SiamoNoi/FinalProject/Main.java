@@ -9,6 +9,7 @@ package com.SiamoNoi.FinalProject;
  *
  * @author AhmadSyifaur<ahmadsyifaur11@gmail.com>
  */
+import com.SiamoNoi.FinalProject.AdminUser.LoginAdmin;
 import com.SiamoNoi.FinalProject.PegawaiUser.LoginPegawai;
 public class Main extends javax.swing.JFrame {
 
@@ -28,21 +29,22 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         AdminButton = new javax.swing.JButton();
         PegawaiButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Pegawai");
-
-        jLabel2.setText("Admin");
-
         AdminButton.setText("Admin");
+        AdminButton.setBackground(new java.awt.Color(236,109,24));
+        AdminButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AdminButtonActionPerformed(evt);
+            }
+        });
 
         PegawaiButton.setText("Pegawai");
+        PegawaiButton.setBackground(new java.awt.Color(24,236,24));
         PegawaiButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PegawaiButtonActionPerformed(evt);
@@ -55,12 +57,6 @@ public class Main extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(69, 69, 69))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addComponent(PegawaiButton)
@@ -74,18 +70,14 @@ public class Main extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AdminButton)
                     .addComponent(PegawaiButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addGap(44, 44, 44))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         pack();
@@ -97,6 +89,13 @@ public class Main extends javax.swing.JFrame {
         pgwLogin.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_PegawaiButtonActionPerformed
+
+    private void AdminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminButtonActionPerformed
+        // TODO add your handling code here:
+        LoginAdmin admLogin =new LoginAdmin();
+        admLogin.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_AdminButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -136,8 +135,6 @@ public class Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AdminButton;
     private javax.swing.JButton PegawaiButton;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }
