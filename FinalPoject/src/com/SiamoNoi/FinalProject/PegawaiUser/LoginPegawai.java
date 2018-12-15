@@ -6,6 +6,12 @@
 package com.SiamoNoi.FinalProject.PegawaiUser;
 
 import com.SiamoNoi.FinalProject.Main;
+import com.SiamoNoi.FinalProject.koneksi.koneksi;
+import java.sql.Connection;
+import javax.swing.JOptionPane;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 
 /**
  *
@@ -16,6 +22,7 @@ public class LoginPegawai extends javax.swing.JFrame {
     /**
      * Creates new form LoginPegawai
      */
+    
     public LoginPegawai() {
         initComponents();
     }
@@ -58,6 +65,11 @@ public class LoginPegawai extends javax.swing.JFrame {
         });
 
         LoginButton2.setText("Login");
+        LoginButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LoginButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -112,6 +124,10 @@ public class LoginPegawai extends javax.swing.JFrame {
         home.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_CancelButton1ActionPerformed
+
+    private void LoginButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LoginButton2ActionPerformed
 
     /**
      * @param args the command line arguments
