@@ -18,13 +18,15 @@ import java.sql.Statement;
  * @author Arifanny Ramadhan Sukma | arifannyrs@gmail.com
  */
 public class LoginPegawai extends javax.swing.JFrame {
-
+    Connection connection;
     /**
      * Creates new form LoginPegawai
      */
     
     public LoginPegawai() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        connection=koneksi.conection();
     }
 
     /**
@@ -41,21 +43,22 @@ public class LoginPegawai extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         UsernameTextField1 = new javax.swing.JTextField();
-        PgwPasswordField2 = new javax.swing.JPasswordField();
+        PasswordField2 = new javax.swing.JPasswordField();
         CancelButton1 = new javax.swing.JButton();
         LoginButton2 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         jPasswordField1.setText("jPasswordField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/SiamoNoi/FinalProject/images/Login-toolbar-32.png"))); // NOI18N
 
         jLabel2.setText("Password");
 
         jLabel3.setText("Username");
-
-        PgwPasswordField2.setText("jPasswordField2");
 
         CancelButton1.setText("Cancel");
         CancelButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -71,26 +74,34 @@ public class LoginPegawai extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel4.setText("Pegawai");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel4)))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(LoginButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(CancelButton1))
                     .addComponent(UsernameTextField1)
-                    .addComponent(PgwPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27))
+                    .addComponent(PasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,16 +114,17 @@ public class LoginPegawai extends javax.swing.JFrame {
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(PgwPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(LoginButton2)
-                            .addComponent(CancelButton1)))
+                            .addComponent(PasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(jLabel1)))
-                .addContainerGap(31, Short.MAX_VALUE))
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel4)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LoginButton2)
+                    .addComponent(CancelButton1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -127,6 +139,24 @@ public class LoginPegawai extends javax.swing.JFrame {
 
     private void LoginButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButton2ActionPerformed
         // TODO add your handling code here:
+        try {
+            
+            Statement st = connection.createStatement();
+            String sql="SELECT * FROM tbl_loginpegawai WHERE username='"+UsernameTextField1.getText()+
+                    "'AND password='"+PasswordField2.getText()+"'";
+            ResultSet rs = st.executeQuery(sql);
+            if (rs.next()) {
+                if (UsernameTextField1.getText().equals(rs.getString("username")) && PasswordField2.getText().equals(rs.getString("password"))) {
+                    JOptionPane.showMessageDialog(null, "berhasil login\nSelamat Datang "+rs.getString("username"));
+                    new PegawaiMain().setVisible(true);
+                    this.setVisible(false);
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Username atau Password Salah");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,e.getMessage());
+        }
     }//GEN-LAST:event_LoginButton2ActionPerformed
 
     /**
@@ -167,11 +197,12 @@ public class LoginPegawai extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CancelButton1;
     private javax.swing.JButton LoginButton2;
-    private javax.swing.JPasswordField PgwPasswordField2;
+    private javax.swing.JPasswordField PasswordField2;
     private javax.swing.JTextField UsernameTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPasswordField jPasswordField1;
     // End of variables declaration//GEN-END:variables
 }

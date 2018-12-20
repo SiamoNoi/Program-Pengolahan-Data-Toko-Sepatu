@@ -6,6 +6,7 @@
 package com.SiamoNoi.FinalProject.dao;
 
 import com.SiamoNoi.FinalProject.Model.Barang;
+import com.SiamoNoi.FinalProject.Model.Brands;
 import com.SiamoNoi.FinalProject.koneksi.koneksi;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,11 +25,11 @@ import java.util.logging.Logger;
 public class daoBarang implements InterfaceBarang{
     
     Connection connection;
-    String insert ="INSERT INTO toko_sepatu (nama_brand,nama_brand,size,color,harga,jumlah_barang) VALUES (?,?,?,?,?,?,?);";
-    String update ="UPDATE toko_sepatu set nama_brand=?,nama_brand=?,size=?,color=?,harga=?,jumlah_barang=? ;";
-    String delete ="DELETE FROM toko_sepatu where id_barang=? ;";
-    String select ="SELECT * FROM toko_sepatu;";
-    String carinama ="SELECT * FROM toko_sepatu WHERE nama_barang like ?";
+    String insert ="INSERT INTO tbl_barang (nama_brand,nama_barang,size,color,harga,jumlah_barang) VALUES (?,?,?,?,?,?);";
+    String update ="UPDATE tbl_barang set nama_brand=?,nama_brand=?,size=?,color=?,harga=?,jumlah_barang=? ;";
+    String delete ="DELETE FROM tbl_barang where id_barang=? ;";
+    String select ="SELECT * FROM tbl_barang;";
+    String carinama ="SELECT * FROM tbl_barang WHERE nama_barang like ?";
     
     public daoBarang(){
         connection = koneksi.conection();
@@ -39,17 +40,17 @@ public class daoBarang implements InterfaceBarang{
         PreparedStatement statement = null;
         try {
             statement=connection.prepareStatement(insert);
-            statement.setString(2, b.getNama_brand());
-            statement.setString(3, b.getNama_barang());
-            statement.setString(4, b.getSize());
-            statement.setString(5, b.getColor());
-            statement.setInt(6, b.getHarga());
-            statement.setInt(7, b.getJumlah_barang());
+            statement.setString(1, b.getNama_brand());
+            statement.setString(2, b.getNama_barang());
+            statement.setString(3, b.getSize());
+            statement.setString(4, b.getColor());
+            statement.setInt(5, b.getHarga());
+            statement.setInt(6, b.getJumlah_barang());
             statement.executeUpdate();
-            ResultSet rs= statement.getGeneratedKeys();
-            while (rs.next()) {
-                b.setId_barang(rs.getInt(1));
-            }
+//            ResultSet rs= statement.getGeneratedKeys();
+//            while (rs.next()) {
+//                b.setId_barang(rs.getInt(1));
+//            }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally{
@@ -113,14 +114,32 @@ public class daoBarang implements InterfaceBarang{
             ResultSet rs = st.executeQuery(select);
             while (rs.next()) {
                 Barang b = new Barang();
-                b.setId_barang(rs.getInt("ID"));
-                b.setNama_brand(rs.getString("Brand"));
-                b.setNama_barang(rs.getString("Nama Barang"));
-                b.setSize(rs.getString("Size"));
-                b.setColor(rs.getString("Warna"));
-                b.setHarga(rs.getInt("Harga"));
-                b.setJumlah_barang(rs.getInt("Jumlah Stok"));
+                b.setId_barang(rs.getInt("id_barang"));
+                b.setNama_brand(rs.getString("nama_brand"));
+                b.setNama_barang(rs.getString("nama_barang"));
+                b.setSize(rs.getString("size"));
+                b.setColor(rs.getString("color"));
+                b.setHarga(rs.getInt("harga"));
+                b.setJumlah_barang(rs.getInt("jumlah_barang"));
                 lb.add(b);
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(daoBarang.class.getName()).log(Level.SEVERE,null,e);
+        }
+        return lb;
+    }
+    
+    public List<Brands> getAllBrands(){
+        List<Brands> lb=null;
+        try {
+            lb = new ArrayList<Brands>();
+            Statement st =connection.createStatement();
+            ResultSet rs =st.executeQuery("SELECT * FROM tbl_brand");
+            while (rs.next()) {
+                Brands brand=new Brands();
+                brand.setId_brand(rs.getInt("id_brand"));
+                brand.setNama_brand(rs.getString("nama_brand"));
+                lb.add(brand);
             }
         } catch (SQLException e) {
             Logger.getLogger(daoBarang.class.getName()).log(Level.SEVERE,null,e);
@@ -138,13 +157,13 @@ public class daoBarang implements InterfaceBarang{
             ResultSet rs =st.executeQuery();
             while (rs.next()) {
                 Barang b = new Barang();
-                b.setId_barang(rs.getInt("ID"));
-                b.setNama_brand(rs.getString("Brand"));
-                b.setNama_barang(rs.getString("Nama Barang"));
-                b.setSize(rs.getString("Size"));
-                b.setColor(rs.getString("Warna"));
-                b.setHarga(rs.getInt("Harga"));
-                b.setJumlah_barang(rs.getInt("Jumlah Stok"));
+                b.setId_barang(rs.getInt("id_barang"));
+                b.setNama_brand(rs.getString("nama_brand"));
+                b.setNama_barang(rs.getString("nama_barang"));
+                b.setSize(rs.getString("size"));
+                b.setColor(rs.getString("color"));
+                b.setHarga(rs.getInt("harga"));
+                b.setJumlah_barang(rs.getInt("jumlah_barang"));
                 lb.add(b);
             }
         } catch (Exception e) {

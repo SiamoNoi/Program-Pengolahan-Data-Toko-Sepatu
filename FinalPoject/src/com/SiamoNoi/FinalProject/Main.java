@@ -11,6 +11,7 @@ package com.SiamoNoi.FinalProject;
  */
 import com.SiamoNoi.FinalProject.AdminUser.LoginAdmin;
 import com.SiamoNoi.FinalProject.PegawaiUser.LoginPegawai;
+import javax.swing.JOptionPane;
 public class Main extends javax.swing.JFrame {
 
     /**
@@ -18,6 +19,7 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -32,26 +34,42 @@ public class Main extends javax.swing.JFrame {
         AdminButton = new javax.swing.JButton();
         PegawaiButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 51, 102));
+        setUndecorated(true);
+        setResizable(false);
 
+        AdminButton.setBackground(new java.awt.Color(255, 153, 0));
+        AdminButton.setForeground(new java.awt.Color(0, 0, 0));
         AdminButton.setText("Admin");
-        AdminButton.setBackground(new java.awt.Color(236,109,24));
         AdminButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AdminButtonActionPerformed(evt);
             }
         });
 
+        PegawaiButton.setBackground(new java.awt.Color(0, 153, 204));
+        PegawaiButton.setForeground(new java.awt.Color(0, 0, 0));
         PegawaiButton.setText("Pegawai");
-        PegawaiButton.setBackground(new java.awt.Color(24,236,24));
         PegawaiButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PegawaiButtonActionPerformed(evt);
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel3.setText("Login");
+
+        jButton1.setBackground(new java.awt.Color(255, 0, 0));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("X");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -66,18 +84,25 @@ public class Main extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(153, 153, 153)
                 .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jLabel3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AdminButton)
                     .addComponent(PegawaiButton))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         pack();
@@ -96,6 +121,11 @@ public class Main extends javax.swing.JFrame {
         admLogin.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_AdminButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+         System.exit(0);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -135,6 +165,7 @@ public class Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AdminButton;
     private javax.swing.JButton PegawaiButton;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }

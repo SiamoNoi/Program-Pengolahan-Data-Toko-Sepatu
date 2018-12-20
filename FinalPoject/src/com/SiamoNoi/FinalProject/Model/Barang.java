@@ -73,6 +73,11 @@ public class Barang {
     public void setJumlah_barang(Integer jumlah_barang) {
         this.jumlah_barang = jumlah_barang;
     }
+
+    @Override
+    public String toString() {
+        return nama_barang;
+    }
     
     
 }

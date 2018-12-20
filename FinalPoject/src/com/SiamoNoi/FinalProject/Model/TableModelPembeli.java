@@ -4,28 +4,29 @@
  * and open the template in the editor.
  */
 package com.SiamoNoi.FinalProject.Model;
-import java.util.*;
+
+import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 /**
  *
  * @author AhmadSyifaur<ahmadsyifaur11@gmail.com>
  */
-public class TableModelBarang extends AbstractTableModel{
-    List<Barang> lb;
+public class TableModelPembeli extends AbstractTableModel{
+    List<Pembeli> lp ;
 
-    public TableModelBarang(List<Barang> lb) {
-        this.lb = lb;
+    public TableModelPembeli(List<Pembeli> lp) {
+        this.lp = lp;
     }
-        
+    
     @Override
     public int getRowCount() {
-        return lb.size();
+        return lp.size();
     }
 
     @Override
     public int getColumnCount() {
-        return 7;
+         return 6;
     }
     
     public String getColumnName (int column){
@@ -33,39 +34,35 @@ public class TableModelBarang extends AbstractTableModel{
             case 0:
                 return "ID";
             case 1:
-                return "Nama Brand";
+                return "Nama";
             case 2:
-                return "Nama Barang";
+                return "Kota";
             case 3:
-                return "Size";
+                return "Alamat";
             case 4:
-                return "Color";
+                return "Gender";
             case 5:
-                return "Harga";
-            case 6:
-                return "Jumlah Barang";
+                return "No.Telp";
             default:
                 return null;
         }
     }
-
+    
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch (columnIndex){
             case 0:
-                return lb.get(rowIndex).getId_barang();
+                return lp.get(rowIndex).getId_pembeli();
             case 1:
-                return lb.get(rowIndex).getNama_brand();
+                return lp.get(rowIndex).getNama_pembeli();
             case 2:
-                return lb.get(rowIndex).getNama_barang();
+                return lp.get(rowIndex).getKota();
             case 3:
-                return lb.get(rowIndex).getSize();
+                return lp.get(rowIndex).getAlamat();
             case 4:
-                return lb.get(rowIndex).getColor();
+                return lp.get(rowIndex).getGender();
             case 5:
-                return lb.get(rowIndex).getHarga();
-            case 6:
-                return lb.get(rowIndex).getJumlah_barang();
+                return lp.get(rowIndex).getTelepon();
             default:
                 return null;
         }

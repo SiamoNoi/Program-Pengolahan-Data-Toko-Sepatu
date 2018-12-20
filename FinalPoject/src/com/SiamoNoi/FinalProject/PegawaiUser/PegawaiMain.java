@@ -5,6 +5,9 @@
  */
 package com.SiamoNoi.FinalProject.PegawaiUser;
 
+import com.SiamoNoi.FinalProject.Main;
+import javax.swing.JDesktopPane;
+
 /**
  *
  * @author AhmadSyifaur<ahmadsyifaur11@gmail.com>
@@ -16,7 +19,13 @@ public class PegawaiMain extends javax.swing.JFrame {
      */
     public PegawaiMain() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
+
+    public JDesktopPane getjDesktopPane1() {
+        return jDesktopPane1;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,16 +36,32 @@ public class PegawaiMain extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         dataBarangButton = new javax.swing.JButton();
         dataBrandButton = new javax.swing.JButton();
         transaksiButton = new javax.swing.JButton();
         logoutButton = new javax.swing.JButton();
         jDesktopPane1 = new javax.swing.JDesktopPane();
+        listPembeliButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(51, 51, 51));
 
+        jPanel1.setBackground(new java.awt.Color(102, 102, 255));
+
+        dataBarangButton.setBackground(new java.awt.Color(0, 51, 153));
+        dataBarangButton.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        dataBarangButton.setForeground(new java.awt.Color(255, 255, 255));
         dataBarangButton.setText("Data Barang");
+        dataBarangButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dataBarangButtonActionPerformed(evt);
+            }
+        });
 
+        dataBrandButton.setBackground(new java.awt.Color(0, 51, 153));
+        dataBrandButton.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        dataBrandButton.setForeground(new java.awt.Color(255, 255, 255));
         dataBrandButton.setText("Data Brand");
         dataBrandButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -44,8 +69,19 @@ public class PegawaiMain extends javax.swing.JFrame {
             }
         });
 
+        transaksiButton.setBackground(new java.awt.Color(0, 51, 153));
+        transaksiButton.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        transaksiButton.setForeground(new java.awt.Color(255, 255, 255));
         transaksiButton.setText("Transaksi");
+        transaksiButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transaksiButtonActionPerformed(evt);
+            }
+        });
 
+        logoutButton.setBackground(new java.awt.Color(204, 0, 0));
+        logoutButton.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        logoutButton.setForeground(new java.awt.Color(255, 255, 255));
         logoutButton.setText("Logout");
         logoutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -53,63 +89,113 @@ public class PegawaiMain extends javax.swing.JFrame {
             }
         });
 
+        jDesktopPane1.setBackground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 415, Short.MAX_VALUE)
+            .addGap(0, 426, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+        listPembeliButton.setBackground(new java.awt.Color(0, 51, 153));
+        listPembeliButton.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        listPembeliButton.setForeground(new java.awt.Color(255, 255, 255));
+        listPembeliButton.setText("List Pembeli");
+        listPembeliButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listPembeliButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dataBarangButton, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dataBrandButton, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(transaksiButton, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(transaksiButton, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(listPembeliButton, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jDesktopPane1)
                 .addContainerGap())
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jDesktopPane1)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jDesktopPane1)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(dataBarangButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(dataBrandButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(transaksiButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(listPembeliButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                         .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 105, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(38, 38, 38))))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void dataBrandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataBrandButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dataBrandButtonActionPerformed
-
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
         // TODO add your handling code here:
-        LoginPegawai login =new LoginPegawai();
-        login.setVisible(true);
+        new Main().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_logoutButtonActionPerformed
+
+    private void transaksiButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transaksiButtonActionPerformed
+        // TODO add your handling code here:
+        FrameCekPembeli cekPembeli = new FrameCekPembeli();
+        jDesktopPane1.add(cekPembeli);
+        cekPembeli.setVisible(true);
+    }//GEN-LAST:event_transaksiButtonActionPerformed
+
+    private void dataBrandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataBrandButtonActionPerformed
+        // TODO add your handling code here:
+        FormBrand listBrand = new FormBrand();
+        jDesktopPane1.add(listBrand);
+        listBrand.setVisible(true);
+    }//GEN-LAST:event_dataBrandButtonActionPerformed
+
+    private void dataBarangButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataBarangButtonActionPerformed
+        // TODO add your handling code here:
+        Frame_Barang listBarang = new Frame_Barang();
+        jDesktopPane1.add(listBarang);
+        listBarang.setVisible(true);
+    }//GEN-LAST:event_dataBarangButtonActionPerformed
+
+    private void listPembeliButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listPembeliButtonActionPerformed
+        // TODO add your handling code here:.a
+        ListTableFrame list =new ListTableFrame();
+        jDesktopPane1.add(list);
+        list.setVisible(true);
+    }//GEN-LAST:event_listPembeliButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -151,6 +237,8 @@ public class PegawaiMain extends javax.swing.JFrame {
     private javax.swing.JButton dataBarangButton;
     private javax.swing.JButton dataBrandButton;
     private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton listPembeliButton;
     private javax.swing.JButton logoutButton;
     private javax.swing.JButton transaksiButton;
     // End of variables declaration//GEN-END:variables
