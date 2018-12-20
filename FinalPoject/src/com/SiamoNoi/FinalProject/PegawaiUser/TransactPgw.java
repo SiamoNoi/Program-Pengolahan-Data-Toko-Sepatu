@@ -59,8 +59,6 @@ public class TransactPgw extends javax.swing.JFrame {
             telpTextField.setText(cust.get(i).getTelepon());
             i++;
         }
-//        alamatTextArea.setText(cust.get(1).getAlamat());
-//        telpTextField.setText(cust.get(1).getTelepon());
         
     }
     
