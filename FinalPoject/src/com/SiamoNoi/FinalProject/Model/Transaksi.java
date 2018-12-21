@@ -98,7 +98,7 @@ public class Transaksi {
     }
 
     public void setHarga_total() {
-        this.harga_total = harga_satuan*qty;
+        this.harga_total = this.harga_satuan*this.qty;
     }
     
 }

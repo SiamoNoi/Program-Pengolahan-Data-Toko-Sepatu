@@ -23,7 +23,7 @@ import java.util.logging.Logger;
  */
 public class daoTransaksi implements ITransaksi{
     Connection connection;
-    String insert ="INSERT INTO tbl_transaksi (tangal,nama_pembeli,alamat_pembeli,telepon,nama_barang,nama_brand,qty,harga_satuan,harga_total) VALUES (?,?,?,?,?,?,?,?,?);";
+    String insert ="INSERT INTO tbl_transaksi (tanggal,nama_pembeli,alamat_pembeli,telepon,nama_barang,nama_brand,qty,harga_satuan,harga_total) VALUES (?,?,?,?,?,?,?,?,?);";
     String delete ="DELETE FROM tbl_transaksi where id_transaksi=? ;";
     String select ="SELECT * FROM tbl_brand;";
     String update ="UPDATE tbl_transaksi set tanggal=?,nama_pembeli=?,alamat_pembeli=?,telepon=?,nama_barang=?,nama_brand=?,qty=?,harga_satuan=?,harga_total=? ;";

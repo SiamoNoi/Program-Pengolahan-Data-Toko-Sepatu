@@ -78,6 +78,11 @@ public class FrameBarang extends javax.swing.JInternalFrame {
         setResizable(true);
 
         cariButton.setText("Cari");
+        cariButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cariButtonActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Jumlah");
 
@@ -225,6 +230,10 @@ public class FrameBarang extends javax.swing.JInternalFrame {
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_deleteButtonActionPerformed
+
+    private void cariButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cariButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
