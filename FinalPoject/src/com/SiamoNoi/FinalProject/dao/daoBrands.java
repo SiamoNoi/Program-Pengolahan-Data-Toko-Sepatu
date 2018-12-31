@@ -26,6 +26,7 @@ public class daoBrands implements IBrands{
     Connection connection;
     String insert ="INSERT INTO tbl_brand (nama_brand) VALUES (?);";
     String delete ="DELETE FROM tbl_brand where id_brand=? ;";
+    String getIdBrand ="SELECT id_brand FROM tbl_brand WHERE nama_brand like ?";
     String select ="SELECT * FROM tbl_brand;";
 
     public daoBrands() {
@@ -88,4 +89,16 @@ public class daoBrands implements IBrands{
         return lb;
     }
     
+    public int getID (String nama){
+        int id = 0;
+        try {
+            PreparedStatement st= connection.prepareStatement(getIdBrand);
+            st.setString(1,"%"+nama+"%");
+            ResultSet rs =st.executeQuery();
+            id=rs.getInt("id_brand");
+        } catch (Exception e) {
+            Logger.getLogger(daoBarang.class.getName()).log(Level.SEVERE, null , e);
+        }
+        return id;
+    }
 }

@@ -11,7 +11,7 @@ package com.SiamoNoi.FinalProject.Model;
  */
 public class Barang {
     private int id_barang;
-    private String nama_brand;
+    private int id_brand;
     private String nama_barang;
     private String size;
     private String color;
@@ -26,12 +26,12 @@ public class Barang {
         this.id_barang = id_barang;
     }
 
-    public String getNama_brand() {
-        return nama_brand;
+    public int getId_brand() {
+        return id_brand;
     }
 
-    public void setNama_brand(String nama_brand) {
-        this.nama_brand = nama_brand;
+    public void setId_brand(int id_brand) {
+        this.id_brand = id_brand;
     }
 
     public String getNama_barang() {

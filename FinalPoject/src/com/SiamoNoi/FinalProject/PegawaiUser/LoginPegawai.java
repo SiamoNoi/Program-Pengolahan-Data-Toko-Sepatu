@@ -11,8 +11,6 @@ import java.sql.Connection;
 import javax.swing.JOptionPane;
 import java.sql.ResultSet;
 import java.sql.Statement;
-
-
 /**
  *
  * @author Arifanny Ramadhan Sukma | arifannyrs@gmail.com

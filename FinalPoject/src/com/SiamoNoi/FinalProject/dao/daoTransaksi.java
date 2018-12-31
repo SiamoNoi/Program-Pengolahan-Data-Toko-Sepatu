@@ -7,6 +7,7 @@ package com.SiamoNoi.FinalProject.dao;
 
 import com.SiamoNoi.FinalProject.Model.Brands;
 import com.SiamoNoi.FinalProject.Model.Transaksi;
+import com.SiamoNoi.FinalProject.koneksi.koneksi;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,10 +24,14 @@ import java.util.logging.Logger;
  */
 public class daoTransaksi implements ITransaksi{
     Connection connection;
-    String insert ="INSERT INTO tbl_transaksi (tangal,nama_pembeli,alamat_pembeli,telepon,nama_barang,nama_brand,qty,harga_satuan,harga_total) VALUES (?,?,?,?,?,?,?,?,?);";
+    String insert ="INSERT INTO tbl_transaksi (tanggal,nama_pembeli,alamat_pembeli,telepon,nama_barang,nama_brand,qty,harga_satuan,harga_total) VALUES (?,?,?,?,?,?,?,?,?);";
     String delete ="DELETE FROM tbl_transaksi where id_transaksi=? ;";
     String select ="SELECT * FROM tbl_brand;";
     String update ="UPDATE tbl_transaksi set tanggal=?,nama_pembeli=?,alamat_pembeli=?,telepon=?,nama_barang=?,nama_brand=?,qty=?,harga_satuan=?,harga_total=? ;";
+
+    public daoTransaksi() {
+    connection=koneksi.conection();
+    }
     
     @Override
     public void insert(Transaksi trx) {

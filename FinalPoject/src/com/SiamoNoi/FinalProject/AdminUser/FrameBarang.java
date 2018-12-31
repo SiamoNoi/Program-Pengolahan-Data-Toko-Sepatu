@@ -10,6 +10,7 @@ import com.SiamoNoi.FinalProject.Model.Brands;
 import com.SiamoNoi.FinalProject.Model.TableModelBarang;
 import com.SiamoNoi.FinalProject.dao.InterfaceBarang;
 import com.SiamoNoi.FinalProject.dao.daoBarang;
+import com.SiamoNoi.FinalProject.dao.daoBrands;
 import java.util.List;
 
 /**
@@ -27,6 +28,22 @@ public class FrameBarang extends javax.swing.JInternalFrame {
         daoBarang = new daoBarang();
         getBrands();
         isiTable();
+    }
+    
+    private int getIdBrand(String nama){
+        daoBrands daoBrand = new daoBrands();
+        return daoBrand.getID(nama);
+    }
+    
+    private void getInfoPembeli(){
+        String nama = pembeliComboBox.getModel().getSelectedItem().toString();
+        List<Pembeli> cust = daoPembeli.autoFill(nama);
+        int i=0;
+        for(Pembeli item:cust){
+            alamatTextArea.setText(cust.get(i).getAlamat());
+            telpTextField.setText(cust.get(i).getTelepon());
+            i++;
+        }
     }
     
     private void getBrands(){
@@ -78,6 +95,11 @@ public class FrameBarang extends javax.swing.JInternalFrame {
         setResizable(true);
 
         cariButton.setText("Cari");
+        cariButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cariButtonActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Jumlah");
 
@@ -212,7 +234,7 @@ public class FrameBarang extends javax.swing.JInternalFrame {
     private void insertButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertButtonActionPerformed
         // TODO add your handling code here:
         Barang brg = new Barang();
-        brg.setNama_brand(brandsComboBox.getSelectedItem().toString());
+        brg.setId_brand(getIdBrand(brandsComboBox.getSelectedItem().toString()));
         brg.setNama_barang(namaTextField.getText());
         brg.setSize(sizeTextField.getText());
         brg.setColor(colorTextField.getText());
@@ -224,7 +246,14 @@ public class FrameBarang extends javax.swing.JInternalFrame {
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
+        String id = jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 0).toString();
+        daoBarang.delete(new Integer(id));
+        isiTable(); 
     }//GEN-LAST:event_deleteButtonActionPerformed
+
+    private void cariButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cariButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -30,7 +30,9 @@ public class daoBarang implements InterfaceBarang{
     String delete ="DELETE FROM tbl_barang where id_barang=? ;";
     String select ="SELECT * FROM tbl_barang;";
     String carinama ="SELECT * FROM tbl_barang WHERE nama_barang like ?";
-    
+    String getBarangFilter ="SELECT nama_barang FROM tbl_barang WHERE nama_brand like ?";
+    String SelectJumlah="SELECT jumlah_barang FROM tbl_barang WHERE id_barang=?;";
+    String updateJumlah="update tbl_barang set jumlah_barang=? where id_barang=? ;";
     public daoBarang(){
         connection = koneksi.conection();
     }
@@ -47,10 +49,7 @@ public class daoBarang implements InterfaceBarang{
             statement.setInt(5, b.getHarga());
             statement.setInt(6, b.getJumlah_barang());
             statement.executeUpdate();
-//            ResultSet rs= statement.getGeneratedKeys();
-//            while (rs.next()) {
-//                b.setId_barang(rs.getInt(1));
-//            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally{
@@ -146,7 +145,7 @@ public class daoBarang implements InterfaceBarang{
         }
         return lb;
     }
-
+    
     @Override
     public List<Barang> getCariNama(String nama) {
         List<Barang> lb=null;
@@ -172,5 +171,54 @@ public class daoBarang implements InterfaceBarang{
         return lb;
     }
     
-
+    public List<Barang> getBarangFilter (String nama){
+        List<Barang> lp=null;
+        try {
+            lp=new ArrayList<Barang>();
+            PreparedStatement st= connection.prepareStatement(getBarangFilter);
+            st.setString(1,"%"+nama+"%");
+            ResultSet rs =st.executeQuery();
+            while (rs.next()) {
+                 Barang b = new Barang();
+                b.setNama_barang(rs.getString("nama_barang"));
+                lp.add(b);
+            }
+        } catch (Exception e) {
+            Logger.getLogger(daoBarang.class.getName()).log(Level.SEVERE, null , e);
+        }
+        return lp;
+    }
+    
+    public int selectJumlah (int id){
+        int jumlah=0;
+        try {
+            PreparedStatement st= connection.prepareStatement(SelectJumlah);
+            st.setInt(1,id);
+            ResultSet rs =st.executeQuery();
+            while (rs.next()) {
+                jumlah=rs.getInt("jumlah_barang");
+            }
+        } catch (Exception e) {
+            Logger.getLogger(daoBarang.class.getName()).log(Level.SEVERE, null , e);
+        }
+        return jumlah;
+    }
+    
+    public void updateJumlah (int id,int qty){
+        PreparedStatement statement =null;
+        try {
+            statement=connection.prepareStatement(updateJumlah);
+            statement.setInt(1,qty);
+            statement.setInt(2,id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally{
+            try {
+                statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
