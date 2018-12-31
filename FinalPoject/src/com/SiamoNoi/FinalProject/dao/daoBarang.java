@@ -29,10 +29,11 @@ public class daoBarang implements InterfaceBarang{
     String update ="UPDATE tbl_barang set id_brand=?,nama_brand=?,size=?,color=?,harga=?,jumlah_barang=? ;";
     String delete ="DELETE FROM tbl_barang where id_barang=? ;";
     String select ="SELECT * FROM tbl_barang join tbl_brand on tbl_barang.id_brand=tbl_brand.id_brand;";
-    String carinama ="SELECT * FROM tbl_barang WHERE nama_barang like ?";
-    String getBarangFilter ="SELECT nama_barang FROM tbl_barang WHERE nama_brand like ?";
+    String carinama ="SELECT * FROM tbl_barang join tbl_brand on tbl_barang.id_brand=tbl_brand.id_brand WHERE nama_barang like ?";
+    String getBarangFilter ="SELECT nama_barang FROM tbl_barang WHERE id_brand =?;";
     String SelectJumlah="SELECT jumlah_barang FROM tbl_barang WHERE id_barang=?;";
     String updateJumlah="update tbl_barang set jumlah_barang=? where id_barang=? ;";
+    String getIdBarang ="SELECT id_barang FROM tbl_barang WHERE nama_barang like ?";
     public daoBarang(){
         connection = koneksi.conection();
     }
@@ -171,12 +172,12 @@ public class daoBarang implements InterfaceBarang{
         return lb;
     }
     
-    public List<Barang> getBarangFilter (String nama){
+    public List<Barang> getBarangFilter (int id){
         List<Barang> lp=null;
         try {
             lp=new ArrayList<Barang>();
             PreparedStatement st= connection.prepareStatement(getBarangFilter);
-            st.setString(1,"%"+nama+"%");
+            st.setInt(1,id);
             ResultSet rs =st.executeQuery();
             while (rs.next()) {
                  Barang b = new Barang();
@@ -220,5 +221,21 @@ public class daoBarang implements InterfaceBarang{
                 e.printStackTrace();
             }
         }
+    }
+    
+    public int getID (String nama){
+        int id = 0;
+        try {
+            PreparedStatement st= connection.prepareStatement(getIdBarang);
+            st.setString(1,"%"+nama+"%");
+            ResultSet rs =st.executeQuery();
+            while (rs.next()) {
+                id=rs.getInt("id_barang");
+            }
+        } catch (Exception e) {
+            Logger.getLogger(daoBarang.class.getName()).log(Level.SEVERE, null , e);
+        }
+        System.out.println(id);
+        return id;
     }
 }

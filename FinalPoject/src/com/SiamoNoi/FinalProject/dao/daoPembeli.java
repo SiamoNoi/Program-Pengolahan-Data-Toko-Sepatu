@@ -30,6 +30,8 @@ public class daoPembeli implements IPembeli{
     String delete ="DELETE FROM tbl_pembeli where id_pembeli=? ;";
     String select ="SELECT * FROM tbl_pembeli;";
     String autoFill="SELECT alamat,telepon FROM tbl_pembeli where nama_pembeli like ?;";
+    String getIdPembeli ="SELECT id_pembeli FROM tbl_pembeli WHERE nama_pembeli like ?";
+    
     public daoPembeli() {
     connection= koneksi.conection();
     }
@@ -117,4 +119,19 @@ public class daoPembeli implements IPembeli{
         return lp;
     }
     
+    public int getID (String nama){
+        int id = 0;
+        try {
+            PreparedStatement st= connection.prepareStatement(getIdPembeli);
+            st.setString(1,"%"+nama+"%");
+            ResultSet rs =st.executeQuery();
+            while (rs.next()) {
+                id=rs.getInt("id_pembeli");
+            }
+        } catch (Exception e) {
+            Logger.getLogger(daoBarang.class.getName()).log(Level.SEVERE, null , e);
+        }
+        System.out.println(id);
+        return id;
+    }
 }

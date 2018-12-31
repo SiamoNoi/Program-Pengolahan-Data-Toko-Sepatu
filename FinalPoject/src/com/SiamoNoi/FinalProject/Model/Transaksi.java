@@ -20,6 +20,9 @@ public class Transaksi {
     private int qty;
     private int harga_satuan;
     private int harga_total;
+    private int id_barang;
+    private int id_brand;
+    private int id_pembeli;
 
     public int getId_transaksi() {
         return id_transaksi;
@@ -100,5 +103,30 @@ public class Transaksi {
     public void setHarga_total() {
         this.harga_total = this.harga_satuan*this.qty;
     }
+
+    public int getId_barang() {
+        return id_barang;
+    }
+
+    public void setId_barang(int id_barang) {
+        this.id_barang = id_barang;
+    }
+
+    public int getId_brand() {
+        return id_brand;
+    }
+
+    public void setId_brand(int id_brand) {
+        this.id_brand = id_brand;
+    }
+
+    public int getId_pembeli() {
+        return id_pembeli;
+    }
+
+    public void setId_pembeli(int id_pembeli) {
+        this.id_pembeli = id_pembeli;
+    }
+    
     
 }

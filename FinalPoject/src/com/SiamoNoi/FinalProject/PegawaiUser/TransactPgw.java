@@ -12,6 +12,7 @@ import com.SiamoNoi.FinalProject.Model.Transaksi;
 import com.SiamoNoi.FinalProject.dao.ITransaksi;
 import com.SiamoNoi.FinalProject.dao.InterfaceBarang;
 import com.SiamoNoi.FinalProject.dao.daoBarang;
+import com.SiamoNoi.FinalProject.dao.daoBrands;
 import com.SiamoNoi.FinalProject.dao.daoPembeli;
 import com.SiamoNoi.FinalProject.dao.daoTransaksi;
 import java.awt.event.ActionEvent;
@@ -66,7 +67,7 @@ public class TransactPgw extends javax.swing.JFrame {
     
     private void FilterComboBarang(){
         String nama = brandsComboBox.getModel().getSelectedItem().toString();
-        List<Barang> b = daoBarang.getBarangFilter(nama);
+        List<Barang> b = daoBarang.getBarangFilter(getIDBrand(nama));
         int i=0;
         barangComboBox.removeAllItems();
         for(Barang item:b){
@@ -139,7 +140,21 @@ public class TransactPgw extends javax.swing.JFrame {
             pembeliComboBox.addItem(cust.getNama_pembeli());
         }
     }
- 
+    
+    private int getIDBarang(String nama){
+    daoBarang daoBarang = new daoBarang();
+    return daoBarang.getID(nama);
+    }
+    
+    private int getIDBrand(String nama){
+    daoBrands daoBrand = new daoBrands();
+    return daoBrand.getID(nama);
+    }
+    
+    private int getIDPembeli(String nama){
+    daoPembeli daoPembeli = new daoPembeli();
+    return daoPembeli.getID(nama);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -312,10 +327,13 @@ public class TransactPgw extends javax.swing.JFrame {
             Transaksi trx = new Transaksi();
             trx.setTanggal(getTgl());
             trx.setNama_pembeli(pembeliComboBox.getSelectedItem().toString());
+            trx.setId_pembeli(getIDPembeli(pembeliComboBox.getSelectedItem().toString()));
             trx.setAlamat_pembeli(alamatTextArea.getText());
             trx.setTelepon(telpTextField.getText());
             trx.setNama_barang(barangComboBox.getSelectedItem().toString());
+            trx.setId_barang(getIDBarang(barangComboBox.getSelectedItem().toString()));
             trx.setNama_brand(brandsComboBox.getSelectedItem().toString());
+            trx.setId_brand(getIDBrand(brandsComboBox.getSelectedItem().toString()));
             trx.setQty(Integer.parseInt(QtyTextField.getText()));
             int i=0;
             int hrg=0;
@@ -342,16 +360,7 @@ public class TransactPgw extends javax.swing.JFrame {
        
         
     }//GEN-LAST:event_saveButtonActionPerformed
-    private int getIDBarang(String nama){
-            List<Barang> brg = daoBarang.getCariNama(nama);
-            int it=0;
-            for(Barang item:brg){
-                 int id= brg.get(it).getId_barang();
-                 it++;
-                 return id;
-            }
-            return -1;
-    }
+
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);

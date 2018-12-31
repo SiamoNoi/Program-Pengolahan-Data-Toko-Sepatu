@@ -24,7 +24,7 @@ import java.util.logging.Logger;
  */
 public class daoTransaksi implements ITransaksi{
     Connection connection;
-    String insert ="INSERT INTO tbl_transaksi (tanggal,nama_pembeli,alamat_pembeli,telepon,nama_barang,nama_brand,qty,harga_satuan,harga_total) VALUES (?,?,?,?,?,?,?,?,?);";
+    String insert ="INSERT INTO tbl_transaksi (tanggal,id_pembeli,alamat_pembeli,telepon,id_barang,id_brand,qty,harga_satuan,harga_total) VALUES (?,?,?,?,?,?,?,?,?);";
     String delete ="DELETE FROM tbl_transaksi where id_transaksi=? ;";
     String select ="SELECT * FROM tbl_brand;";
     String update ="UPDATE tbl_transaksi set tanggal=?,nama_pembeli=?,alamat_pembeli=?,telepon=?,nama_barang=?,nama_brand=?,qty=?,harga_satuan=?,harga_total=? ;";
@@ -39,11 +39,11 @@ public class daoTransaksi implements ITransaksi{
            try {
                statement=connection.prepareStatement(insert);
                statement.setString(1, trx.getTanggal());
-               statement.setString(2, trx.getNama_pembeli());
+               statement.setInt(2, trx.getId_pembeli());
                statement.setString(3, trx.getAlamat_pembeli());
                statement.setString(4, trx.getTelepon());
-               statement.setString(5, trx.getNama_barang());
-               statement.setString(6, trx.getNama_brand());
+               statement.setInt(5, trx.getId_barang());
+               statement.setInt(6, trx.getId_brand());
                statement.setInt(7, trx.getQty());
                statement.setInt(8, trx.getHarga_satuan());
                statement.setInt(9, trx.getHarga_total());
