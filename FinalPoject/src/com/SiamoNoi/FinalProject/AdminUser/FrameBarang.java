@@ -35,17 +35,6 @@ public class FrameBarang extends javax.swing.JInternalFrame {
         return daoBrand.getID(nama);
     }
     
-    private void getInfoPembeli(){
-        String nama = pembeliComboBox.getModel().getSelectedItem().toString();
-        List<Pembeli> cust = daoPembeli.autoFill(nama);
-        int i=0;
-        for(Pembeli item:cust){
-            alamatTextArea.setText(cust.get(i).getAlamat());
-            telpTextField.setText(cust.get(i).getTelepon());
-            i++;
-        }
-    }
-    
     private void getBrands(){
         List<Brands> brand = daoBarang.getAllBrands();
         int i=0;
@@ -235,6 +224,7 @@ public class FrameBarang extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         Barang brg = new Barang();
         brg.setId_brand(getIdBrand(brandsComboBox.getSelectedItem().toString()));
+        brg.setNama_brand(brandsComboBox.getSelectedItem().toString());
         brg.setNama_barang(namaTextField.getText());
         brg.setSize(sizeTextField.getText());
         brg.setColor(colorTextField.getText());

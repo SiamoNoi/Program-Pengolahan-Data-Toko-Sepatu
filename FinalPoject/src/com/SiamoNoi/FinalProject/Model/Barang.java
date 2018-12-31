@@ -12,6 +12,7 @@ package com.SiamoNoi.FinalProject.Model;
 public class Barang {
     private int id_barang;
     private int id_brand;
+    private String nama_brand;
     private String nama_barang;
     private String size;
     private String color;
@@ -78,6 +79,13 @@ public class Barang {
     public String toString() {
         return nama_barang;
     }
-    
+
+    public String getNama_brand() {
+        return nama_brand;
+    }
+
+    public void setNama_brand(String nama_brand) {
+        this.nama_brand = nama_brand;
+    }
     
 }

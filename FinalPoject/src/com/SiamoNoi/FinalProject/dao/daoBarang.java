@@ -25,10 +25,10 @@ import java.util.logging.Logger;
 public class daoBarang implements InterfaceBarang{
     
     Connection connection;
-    String insert ="INSERT INTO tbl_barang (nama_brand,nama_barang,size,color,harga,jumlah_barang) VALUES (?,?,?,?,?,?);";
-    String update ="UPDATE tbl_barang set nama_brand=?,nama_brand=?,size=?,color=?,harga=?,jumlah_barang=? ;";
+    String insert ="INSERT INTO tbl_barang (id_brand,nama_barang,size,color,harga,jumlah_barang) VALUES (?,?,?,?,?,?);";
+    String update ="UPDATE tbl_barang set id_brand=?,nama_brand=?,size=?,color=?,harga=?,jumlah_barang=? ;";
     String delete ="DELETE FROM tbl_barang where id_barang=? ;";
-    String select ="SELECT * FROM tbl_barang;";
+    String select ="SELECT * FROM tbl_barang join tbl_brand on tbl_barang.id_brand=tbl_brand.id_brand;";
     String carinama ="SELECT * FROM tbl_barang WHERE nama_barang like ?";
     String getBarangFilter ="SELECT nama_barang FROM tbl_barang WHERE nama_brand like ?";
     String SelectJumlah="SELECT jumlah_barang FROM tbl_barang WHERE id_barang=?;";
@@ -42,7 +42,7 @@ public class daoBarang implements InterfaceBarang{
         PreparedStatement statement = null;
         try {
             statement=connection.prepareStatement(insert);
-            statement.setString(1, b.getNama_brand());
+            statement.setInt(1, b.getId_brand());
             statement.setString(2, b.getNama_barang());
             statement.setString(3, b.getSize());
             statement.setString(4, b.getColor());
@@ -68,7 +68,7 @@ public class daoBarang implements InterfaceBarang{
             statement=connection.prepareStatement(update);
             statement.setInt(1, b.getId_barang());
             statement.setString(2, b.getNama_brand());
-            statement.setString(3, b.getNama_barang());
+            statement.setInt(3, b.getId_brand());
             statement.setString(4, b.getSize());
             statement.setString(5, b.getColor());
             statement.setInt(6, b.getHarga());

@@ -95,10 +95,13 @@ public class daoBrands implements IBrands{
             PreparedStatement st= connection.prepareStatement(getIdBrand);
             st.setString(1,"%"+nama+"%");
             ResultSet rs =st.executeQuery();
-            id=rs.getInt("id_brand");
+            while (rs.next()) {
+                id=rs.getInt("id_brand");
+            }
         } catch (Exception e) {
             Logger.getLogger(daoBarang.class.getName()).log(Level.SEVERE, null , e);
         }
+        System.out.println(id);
         return id;
     }
 }

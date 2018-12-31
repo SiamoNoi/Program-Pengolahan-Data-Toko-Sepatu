@@ -42,12 +42,8 @@ public class daoPembeli implements IPembeli{
             st.setString(1,"%"+nama+"%");
             ResultSet rs =st.executeQuery();
             while (rs.next()) {
-                 Pembeli p = new Pembeli();
-                
-                
-                
+                 Pembeli p = new Pembeli();               
                 p.setAlamat(rs.getString("alamat"));
-                
                 p.setTelepon(rs.getString("telepon"));
                 lp.add(p);
             }
